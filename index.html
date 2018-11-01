@@ -98,9 +98,6 @@ function initializeMap() {
           if(nodes2[i].lat() >= 23.155){
 //            if(nodes2[i].lat() >= 23.33){
               nodes.push(nodes2[i]);
-              if(nodes.length > 8){
-                  break;
-              }
           }
     }
     
@@ -154,38 +151,47 @@ function initializeMap() {
 
 // Get all durations depending on travel type
 function getDurations(callback) {
-    var service = new google.maps.DistanceMatrixService();
-    console.log(JSON.stringify(nodes));
-    service.getDistanceMatrix({
-        origins: nodes,
-        destinations: nodes,
-        travelMode: google.maps.TravelMode[$('#travel-type').val()],
-        avoidHighways: parseInt($('#avoid-highways').val()) > 0 ? true : false,
-        avoidTolls: false,
-    }, function myCallback(distanceData, status) {
-          if (status == 'OK') {
-              console.log(JSON.stringify(distanceData));
-                // Create duration data array
-                var nodeDistanceData;
-                for (originNodeIndex in distanceData.rows) {
-                    nodeDistanceData = distanceData.rows[originNodeIndex].elements;
-                    durations[originNodeIndex] = [];
-                    for (destinationNodeIndex in nodeDistanceData) {
-                        console.log(JSON.stringify(nodeDistanceData));
-                        if (durations[originNodeIndex][destinationNodeIndex] = nodeDistanceData[destinationNodeIndex].duration == undefined) {
-                            alert('Error: couldn\'t get a trip duration from API');
-                            return;
-                        }
-                        durations[originNodeIndex][destinationNodeIndex] = nodeDistanceData[destinationNodeIndex].duration.value;
-                    }
-                }
-                if (callback != undefined) {
-                    callback();
-                }
-          }else{
-              console.log(JSON.stringify(status));
-          }
-        });
+    //var service = new google.maps.DistanceMatrixService();
+    //console.log(JSON.stringify(nodes));
+//     service.getDistanceMatrix({
+//         origins: nodes,
+//         destinations: nodes,
+//         travelMode: google.maps.TravelMode[$('#travel-type').val()],
+//         avoidHighways: parseInt($('#avoid-highways').val()) > 0 ? true : false,
+//         avoidTolls: false,
+//     }, function myCallback(distanceData, status) {
+//           if (status == 'OK') {
+//               console.log(JSON.stringify(distanceData));
+//                 // Create duration data array
+//                 var nodeDistanceData;
+//                 for (originNodeIndex in distanceData.rows) {
+//                     nodeDistanceData = distanceData.rows[originNodeIndex].elements;
+//                     durations[originNodeIndex] = [];
+//                     for (destinationNodeIndex in nodeDistanceData) {
+//                         console.log(JSON.stringify(nodeDistanceData));
+//                         if (durations[originNodeIndex][destinationNodeIndex] = nodeDistanceData[destinationNodeIndex].duration == undefined) {
+//                             alert('Error: couldn\'t get a trip duration from API');
+//                             return;
+//                         }
+//                         durations[originNodeIndex][destinationNodeIndex] = nodeDistanceData[destinationNodeIndex].duration.value;
+//                     }
+//                 }
+//                 if (callback != undefined) {
+//                     callback();
+//                 }
+//           }else{
+//               console.log(JSON.stringify(status));
+//           }
+//         });
+    for (var i = 0; i < nodes.length; i++) {
+        for(var j = 0; j < nodes.length; j++){
+            var x_d = nodes[i].lat()-nodes[j].lat()*100;
+            var y_d = nodes[i].lng()-nodes[j].lng()*100;
+            durations[i][j] = (x_d*x_d) + (y_d*(y_d);
+        }
+    }
+           if (callback != undefined)
+               callback();
 }
     
 
