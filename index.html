@@ -299,11 +299,13 @@ $(document).ready(function() {
                 directionsDisplay.setMap(map);
                 var waypts = [];
                 for (var i = 1; i < route.length; i++) {
+                    console.log(route[i]);
                     waypts.push({
                         location: nodes[route[i]],
                         stopover: true
                     });
                 }
+                
                 
                 // Add final route to map
                 var request = {
