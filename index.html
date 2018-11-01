@@ -26,8 +26,8 @@ function initializeMap() {
 
     // Create map click event
     google.maps.event.addListener(map, 'click', function(event) {
-        // Add destination (max 9)
-        if (nodes.length >= 9) {
+        // Add destination (max 30)
+        if (nodes.length >= 30) {
             alert('Max destinations added');
             return;
         }
