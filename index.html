@@ -185,9 +185,9 @@ function getDurations(callback) {
 //         });
     for (var i = 0; i < nodes.length; i++) {
         for(var j = 0; j < nodes.length; j++){
-            var x_d = nodes[i].lat()-nodes[j].lat()*100;
-            var y_d = nodes[i].lng()-nodes[j].lng()*100;
-            durations[i][j] = (x_d*x_d) + (y_d*(y_d);
+            var x_d = (nodes[i].lat()-nodes[j].lat())*100;
+            var y_d = (nodes[i].lng()-nodes[j].lng())*100;
+            durations[i][j] = (x_d*x_d) + (y_d*y_d);
         }
     }
            if (callback != undefined)
