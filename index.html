@@ -264,6 +264,7 @@ $(document).ready(function() {
             ga.getConfig();
             var pop = new ga.population();
             pop.initialize(nodes.length);
+            console.log("node length : " + nodes.length);
             var route = pop.getFittest().chromosome;
 
             ga.evolvePopulation(pop, function(update) {
@@ -498,6 +499,7 @@ var ga = {
                 this.chromosome[randomIndex] = this.chromosome[i];
                 this.chromosome[i] = tempNode;
             }
+            console.log("indiv node length : " + this.chromosome.length);
         };
         
         // Set individual's chromosome
