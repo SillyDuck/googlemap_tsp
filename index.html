@@ -152,6 +152,7 @@ function initializeMap() {
 // Get all durations depending on travel type
 function getDurations(callback) {
     var service = new google.maps.DistanceMatrixService();
+    console.log(JSON.stringify(nodes));
     service.getDistanceMatrix({
         origins: nodes,
         destinations: nodes,
