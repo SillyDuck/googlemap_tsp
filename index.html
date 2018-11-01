@@ -98,6 +98,9 @@ function initializeMap() {
           if(nodes2[i].lat() >= 23.155){
 //            if(nodes2[i].lat() >= 23.33){
               nodes.push(nodes2[i]);
+              if(nodes.length > 8){
+                  break;
+              }
           }
     }
     
