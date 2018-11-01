@@ -159,8 +159,12 @@ function getDurations(callback) {
         travelMode: google.maps.TravelMode[$('#travel-type').val()],
         avoidHighways: parseInt($('#avoid-highways').val()) > 0 ? true : false,
         avoidTolls: false,
-    }, function(distanceData) {
-        console.log(JSON.stringify(distanceData));
+    }, myCallback);
+}
+    
+function myCallback(distanceData, status) {
+  if (status == 'OK') {
+      console.log(JSON.stringify(distanceData));
         // Create duration data array
         var nodeDistanceData;
         for (originNodeIndex in distanceData.rows) {
@@ -179,7 +183,9 @@ function getDurations(callback) {
         if (callback != undefined) {
             callback();
         }
-    });
+  }else{
+      console.log(JSON.stringify(status));
+  }
 }
 
 // Removes markers and temporary paths
